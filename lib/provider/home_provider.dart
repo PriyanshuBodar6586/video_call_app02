@@ -51,10 +51,8 @@ class Home_Provider extends ChangeNotifier{
 
 
 
-  List<Modeldata>i1 = [
+  List<Modeldata>ii1 = [
     Modeldata(video:"assets/video/vg/v0.mp4",Image: "assets/image/ig/i0.jpg",Name:" neha",),
-
-
 
   ];
 
@@ -62,6 +60,19 @@ class Home_Provider extends ChangeNotifier{
   Modeldata?Datapickkk;
 
 
+  List<Modeldata>c1 = [
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+
+  ];
+
+  List cdata2 = [];
+  Modeldata?cDatapickkk;
 
 }
 

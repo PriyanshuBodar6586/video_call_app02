@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
-
+import 'package:sizer/sizer.dart';
 
 class interest extends StatefulWidget {
   const interest({Key? key}) : super(key: key);
@@ -12,325 +11,210 @@ class interest extends StatefulWidget {
 }
 
 class _interestState extends State<interest> {
+  int cnte = 0;
 
-  int cnt = 0;
-  
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
 
-    return WillPopScope(
-      onWillPop: (){
-        return dialog();
-      },
-      child: SafeArea(
-        child: Scaffold(resizeToAvoidBottomInset: false,
-          body: Stack(
-            alignment: Alignment.bottomCenter,
+
+      appBar: AppBar(elevation: 00,
+
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text("Select Your Interest",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,),),
+        automaticallyImplyLeading: false,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
             children: [
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height:10
-                    ),
-                  
-                    SizedBox(
-                      height:10,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Opacity(
-                        opacity: 0.9,
-                        child: SingleChildScrollView(
-                          child: Container(
-                            height: 800,
-                            width:600,
-                            decoration: BoxDecoration(
-                                color: Colors.purple.shade900,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "Popular",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary:
-                                          cnt == 0 ? Colors.purple : Colors.grey,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(20)),
-                                        ),
-                                        onPressed: () {
-                                          cnt = 0;
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              "English",
-                                              style: TextStyle(fontSize: 10),
-                                            )
-                                          ],
-                                        )),
-                                    Selecte(
-                                        "Hindi",
-                                        1),
-                                    Selecte(
-                                        "Urdu",
-                                        2),
-                                    Selecte(
-                                        "Bengali ",
-                                        3),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Arabic ",
-                                        4),
-                                    Selecte(
-                                        "Spanish",
-                                        5),
-                                    Selecte(
-                                        "Portuguese", 6),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-
-                                    Selecte(
-                                        " Chinese Simplified",
-                                        7),
-                                    Selecte(
-                                        " Chinese Traditional",
-                                        8),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Indonesian",
-                                        9),
-                                    Selecte(
-                                        "Malay",
-                                        10),
-                                    Selecte(
-                                        "Russian",
-                                        11),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Gujarati ",
-                                        12),
-                                    Selecte(
-                                        "Telugu ",
-                                        13),
-                                    Selecte(
-                                        "Tamil", 14),
-                                    Selecte(
-                                        "Marathi",
-                                        15),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Bengali",
-                                        16),
-                                    Selecte(
-                                        "Dunish",
-                                        17),
-                                    Selecte(
-                                        "French",
-                                        18),
-                                    Selecte(
-                                        "German",
-                                        19),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-
-                                    Selecte(
-                                        "Greek",
-                                        20),
-                                    Selecte(
-                                        "Hausa",
-                                        21),
-                                    Selecte(
-                                        "Irish",
-                                        22),
-                                    Selecte(
-                                        "Javanese",
-                                        23),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Japanese",
-                                        24),
-                                    Selecte(
-                                        "Kinyarwanda",
-                                        25),
-                                    Selecte(
-                                        "Javanese",
-                                        23),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-
-                                    Selecte(
-                                        "israel",
-                                        28),
-                                    Selecte(
-                                        "Latin",
-                                        29),
-                                    Selecte(
-                                        "Luxemborgish",
-                                        30),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-
-                                    Selecte(
-                                        "South African Xhosa",
-                                        31),
-                                    Selecte(
-                                        "Shona",
-                                        32),
-                                    Selecte(
-                                        "Scottish Gaelic",
-                                        33),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "new zealand",
-                                        34),
-                                    Selecte(
-                                        "Tamil",
-                                        35),
-                                    Selecte(
-                                        "Tatar",
-                                        36),
-                                    Selecte(
-                                        "Tajik",
-                                        37),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Turkmen",
-                                        38),
-                                    Selecte(
-                                        "Ukrainian",
-                                        39),
-                                    Selecte(
-                                        "Yiddish",
-                                        40),
-
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Welsh",
-                                        41),
-                                    Selecte(
-                                        "Yoruba",
-                                        42),
-                                    Selecte(
-                                        "Zulu,South Africa",
-                                        43),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Selecte(
-                                        "Russian",
-                                        44),
-                                    Selecte(
-                                        "Romanian",
-                                        45),
-                                    Selecte(
-                                        "Slovenian",
-                                        46),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8,),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              cnte == 0 ? Color(0xff9610FF) : Colors.white,
+                          elevation: 10,
+                          side: BorderSide(color: Color(0xff9610FF),width: 2.sp),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
+                        onPressed: () {
+                          setState(() {
+                            cnte = 0;
+                          });
+                        },
+                        child: Text(
+                          "🎮 Gaming",
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            color: cnte == 0 ? Colors.white : Color(0xff9610FF),
+                          ),
+                        )),
+                  ),
+
+                  Selecte("🏍 Teavel & Bike Ride", 1),
+
+                ],
               ),
-     
+              Row(
+
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("🌍 Language ", 2),
+                  Selecte("🎬 Movie", 3),
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("📚 Book & Novel", 4),
+                  Selecte("🏛️ Architecture", 5),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("📸 Photography", 6),
+                  Selecte("👗 Fashion", 7),
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("✍ Writing ", 12),
+                  Selecte("🌿Nature & Plant ", 13),
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("🎨 Painting",14),
+                  Selecte("⚽ Football", 15),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("🐼 Animals", 16),
+                  Selecte("😊 People & Society", 17),
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("💪 Gym & Fitness", 24),
+                  Selecte("🍔 Food & Drink", 25),
+
+                ],
+              ),
+              Row (
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Selecte("💃 Dancing & singing",28 ),
+                  Selecte("👨 Art", 29),
+                ],
+              ),
             ],
           ),
-        ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         // Container(
+           // height: 15.h,
+           // width: 100.w,
+           // color: Colors.black,
+         // ),
+          Align(alignment: Alignment.bottomCenter,
+            child: InkWell(
+              onTap: (){
+               Navigator.pushNamed(context, 'Country');
+              },
+              child: Container(
+                height: 8.h,
+                width: 90.w,
+                decoration: BoxDecoration(
+
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0,7),
+                        blurRadius: 25,
+                        color: Color(0xFFD5A0FF))
+                  ],
+                  color: Color(0xFF9610FF),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Center(child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400)),
+                ),
+              ),
+            ),
+          ),
+
+        ],
       ),
     );
   }
-  Future<bool> dialog() async {
-    back();
-    return await false;
-  }
-  void back() {
-    Navigator.pushReplacementNamed(context, 'bottom');
-  }
+
   Widget Selecte(String text, int i) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: cnt == i ? Colors.purple : Colors.grey,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        ),
-        onPressed: () {
-          setState(() {
-            cnt = i;
-          });
-        },
-        child: Text(
-          "$text",
-          style: TextStyle(fontSize: 10),
-        )
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: ElevatedButton(
+
+          style: ElevatedButton.styleFrom(
+            elevation: 10,
+            backgroundColor: cnte == i ? Color(0xff9610FF) : Colors.white,
+            side: BorderSide(color: Color(0xff9610FF),width:2.sp ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          ),
+          onPressed: () {
+            setState(() {
+              cnte = i;
+            });
+          },
+          child: Text(
+            "$text",
+            style: TextStyle(
+              fontSize: 15.sp,
+              color: cnte == i ? Colors.white : Color(0xff9610FF),
+            ),
+          )),
     );
   }
-
 }

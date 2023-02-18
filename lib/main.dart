@@ -6,6 +6,7 @@ import 'package:video_call_app02/view/intro_screen.dart';
 import 'package:video_call_app02/view/intro_screen2.dart';
 import 'package:video_call_app02/view/intro_screnn3.dart';
 import 'package:video_call_app02/view/question/age.dart';
+import 'package:video_call_app02/view/question/country.dart';
 import 'package:video_call_app02/view/question/gender.dart';
 import 'package:video_call_app02/view/question/interest.dart';
 import 'package:video_call_app02/view/question/nick_name.dart';
@@ -44,6 +45,7 @@ void main() async {
               'Age': (contest) => Age(),
               'love': (contest) => love(),
               'interest': (contest) => interest(),
+              'Country': (contest) => Country(),
 
             },
           );
