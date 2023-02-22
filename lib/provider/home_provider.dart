@@ -68,6 +68,12 @@ class Home_Provider extends ChangeNotifier{
     Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
     Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
     Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
+    Modeldata(Image: "assets/image/ig/i0.jpg",Name:" neha",),
 
   ];
 

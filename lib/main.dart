@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/view/home/bottembar.dart';
 import 'package:video_call_app02/view/intro_screen.dart';
 import 'package:video_call_app02/view/intro_screen2.dart';
 import 'package:video_call_app02/view/intro_screnn3.dart';
@@ -33,7 +34,7 @@ void main() async {
             debugShowCheckedModeBanner: false,
             //initialRoute: 'bottom',
 
-             // initialRoute: 'Nickname_Screen',
+              initialRoute: 'Country',
 
             routes: {
               '/': (contest) => splash_screen(),
@@ -46,6 +47,7 @@ void main() async {
               'love': (contest) => love(),
               'interest': (contest) => interest(),
               'Country': (contest) => Country(),
+              'Bottombar': (contest) => Bottombar(),
 
             },
           );
