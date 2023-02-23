@@ -37,10 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   sizer: ^2.0.15
   provider: ^6.0.5
-  swipe_deck: ^1.1.0
   curved_navigation_bar: ^1.0.3
-  flutter_card_swiper: ^2.0.1
-  swipeable_card_stack: ^0.0.5
+  appinio_swiper: ^1.1.1
+  lottie: ^2.2.0
+
 
 
 dev_dependencies:
@@ -72,8 +72,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/country/
-    - assets/images/demo/
     - assets/video/
+    - assets/video/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

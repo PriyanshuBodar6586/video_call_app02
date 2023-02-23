@@ -1,127 +1,93 @@
-
-
-
-
-import 'package:flutter/material.dart';
-import 'package:swipeable_card_stack/swipe_controller.dart';
-import 'package:swipeable_card_stack/swipeable_card_stack.dart';
+import 'dart:developer';
+import 'package:appinio_swiper/appinio_swiper.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/view/home/swipe%20card/buttons.dart';
+import 'package:video_call_app02/view/home/swipe%20card/candidate_model.dart';
+import 'package:video_call_app02/view/home/swipe%20card/card.dart';
 
 class Home_screen extends StatefulWidget {
-//  Home_screen({Key? key, required this.title}) : super(key: key);
-  //final String title;
+  const Home_screen({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _Home_screenState createState() => _Home_screenState();
+  State<Home_screen> createState() => _Home_screenPageState();
 }
 
-class _Home_screenState extends State<Home_screen> {
-  int counter = 1;
-  List <Color>l1 =[
+class _Home_screenPageState extends State<Home_screen> {
+  final AppinioSwiperController controller = AppinioSwiperController();
 
-    Colors.deepPurpleAccent,
-    Colors.white24,
-    Colors.red,
-    Colors.redAccent,
-    Colors.teal,
-    Colors.tealAccent,
-    Colors.yellow,
-    Colors.indigo,
-    Colors.indigoAccent,
-    Colors.purpleAccent,
-    Colors.purple,
-    Colors.pink,
-    Colors.pinkAccent,
-    Colors.amber,
-    Colors.deepPurple,
-    Colors.deepOrange,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.lightGreenAccent,
-    Colors.lime,
-    Colors.limeAccent,
-    Colors.cyanAccent,
-    Colors.cyan,
-    Colors.blue,
-    Colors.black,
-    Colors.blueGrey,
-    Colors.brown,
-    Colors.lightBlue,
-    Colors.lightGreenAccent,
-    Colors.tealAccent,
-    Colors.yellowAccent,
-    Colors.deepOrangeAccent,
-  ];
+  List<Home_screenCard> cards = [];
 
+  @override
+  void initState() {
+    _loadCards();
+    super.initState();
+  }
+
+  void _loadCards() {
+    for (Home_screenCandidateModel candidate in candidates) {
+      cards.add(
+        Home_screenCard(
+          candidate: candidate,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    SwipeableCardSectionController _cardController = SwipeableCardSectionController();
-    //  c1 (
+    return CupertinoPageScaffold(
 
-    // );
-    return Scaffold(
-      appBar: AppBar(
-
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
-          SwipeableCardsSection(
-            cardController: _cardController,
-            context: context,
-            items: [
-              Container(
-                height: 600,
-                width: 600,
-                color: Colors.greenAccent,
-              ),
-              Container(
-                height: 500,
-                width: 350,
-                color: Colors.green,
-              ),
-              Container(
-                height: 500,
-                width: 350,
-                color: Colors.orange,
-              ),
-            ],
-            onCardSwiped: (dir, index, widget) {
-              if (counter <= l1.length) {
-                _cardController.addItem(Container(height: 500,width: 350,color:l1[index]));
-                counter++;
-              }
-            },
-
-            enableSwipeUp: false,
-            enableSwipeDown: false,
+          const SizedBox(
+            height: 20,
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FloatingActionButton(
-                  child: Icon(Icons.chevron_left),
-                  onPressed: () => _cardController.triggerSwipeLeft(),
-                ),
-                FloatingActionButton(
-                  child: Icon(Icons.chevron_right),
-                  onPressed: () => _cardController.triggerSwipeRight(),
-                ),
-                FloatingActionButton(
-                  child: Icon(Icons.arrow_upward),
-                  onPressed: () => _cardController.triggerSwipeUp(),
-                ),
-                FloatingActionButton(
-                  child: Icon(Icons.arrow_downward),
-                  onPressed: () => _cardController.triggerSwipeDown(),
-                ),
-              ],
+            height:75.h,
+            width: 93.w,
+            child: AppinioSwiper(
+              unlimitedUnswipe: true,
+              controller: controller,
+              unswipe: _unswipe,
+              cards: cards,
+              onSwipe: _swipe,
+
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                width: 80,
+              ),
+              swipeLeftButton(controller),
+              const SizedBox(
+                width: 20,
+              ),
+              swipeRightButton(controller),
+              const SizedBox(
+                width: 20,
+              ),
+              unswipeButton(controller),
+            ],
           )
         ],
       ),
     );
+  }
+
+  void _swipe(int index, AppinioSwiperDirection direction) {
+    log("the card was swiped to the: " + direction.name);
+  }
+
+  void _unswipe(bool unswiped) {
+    if (unswiped) {
+      log("SUCCESS: card was unswiped");
+    } else {
+      log("FAIL: no card left to unswipe");
+    }
   }
 }

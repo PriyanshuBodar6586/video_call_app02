@@ -29,12 +29,12 @@ void main() async {
         builder: (context, orientation, deviceType) {
           return MaterialApp(
             theme: ThemeData(
-              accentColor: Colors.black,
+              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
             ),
             debugShowCheckedModeBanner: false,
             //initialRoute: 'bottom',
 
-              initialRoute: 'Country',
+              initialRoute: 'Bottombar',
 
             routes: {
               '/': (contest) => splash_screen(),
