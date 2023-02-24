@@ -20,6 +20,7 @@ class _BottombarState extends State<Bottombar> {
   final items =  [
     Icon(Icons.people, size: 27.sp,color: AppColor.fullwhite,),
     Icon(Icons.person, size: 27.sp,color: AppColor.fullwhite,),
+    Icon(Icons.cable_outlined, size: 27.sp,color: AppColor.fullwhite,),
     Icon(Icons.add, size: 27.sp,color: AppColor.fullwhite,),
     Icon(Icons.search_outlined, size: 27.sp,color: AppColor.fullwhite,)
   ];

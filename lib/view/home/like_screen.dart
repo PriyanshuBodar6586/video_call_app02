@@ -13,7 +13,6 @@ class _Like_screenState extends State<Like_screen> {
     return Scaffold(
       appBar: AppBar(
 
-
       ),
     );
   }
