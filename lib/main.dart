@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_call_app02/view/home/bottembar.dart';
+import 'package:video_call_app02/view/home/lottie.dart';
 import 'package:video_call_app02/view/intro_screen.dart';
 import 'package:video_call_app02/view/intro_screen2.dart';
 import 'package:video_call_app02/view/intro_screnn3.dart';
@@ -48,6 +49,7 @@ void main() async {
               'interest': (contest) => interest(),
               'Country': (contest) => Country(),
               'Bottombar': (contest) => Bottombar(),
+              'Lottie_Screen': (contest) => Lottie_Screen(),
 
             },
           );

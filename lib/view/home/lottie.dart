@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:video_call_app02/provider/home_provider.dart';
 
+import 'rvideo.dart';
 
 class Lottie_Screen extends StatefulWidget {
   const Lottie_Screen({Key? key}) : super(key: key);
@@ -37,7 +38,12 @@ class _Lottie_ScreenState extends State<Lottie_Screen> {
         backgroundColor: Color(0xffffffff),
         body: Center(
           child: Container(
-            child:  Lottie.asset("assets/video/84691-whaiting.json"),
+
+
+            child:  Lottie.asset("assets/video/lottie/84691-whaiting.json"),
+
+
+
 
           ),
         ),
@@ -51,6 +57,6 @@ class _Lottie_ScreenState extends State<Lottie_Screen> {
   }
 
   void back(){
-    Navigator.pushReplacementNamed(context, 'bottom');
+    Navigator.pushReplacementNamed(context, 'Bottombar');
   }
 }

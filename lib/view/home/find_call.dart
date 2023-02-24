@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/model.dart';
+import 'package:video_call_app02/provider/home_provider.dart';
 import 'package:video_call_app02/utilies/constant.dart';
+import 'package:video_call_app02/view/question/country.dart';
 
 class Find_call extends StatefulWidget {
+
   const Find_call({Key? key}) : super(key: key);
 
   @override
@@ -11,49 +16,67 @@ class Find_call extends StatefulWidget {
 }
 
 class _Find_callState extends State<Find_call> {
-
+  Home_Provider? home_providert;
+  Home_Provider? home_providerf;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    
-      body:Stack(
-        children: [
-          Container(
-            height: 100.h,
-            width: 100.w,
-            child: Opacity(opacity: 0.4,child: Image.asset("assets/images/map.png",fit: BoxFit.fill)),
+    home_providert = Provider.of<Home_Provider>(context, listen: true);
+    home_providerf = Provider.of<Home_Provider>(context, listen: false);
+    return WillPopScope(
+      onWillPop: dialog,
+      child: Scaffold(
 
-            ),
-          Center(child: Lottie.asset("assets/video/lottie/Comp 1.json")),
-          Align(alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                height:8.h,
-                width:100.w,
-                decoration: BoxDecoration(
-                  color:AppColor.violet,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 20, color:AppColor.fullwhite)
-                  ],
-                ),
-                child: Center(
-                  child: Text("Tap To Call",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.fullwhite,
-                        fontSize: 20.sp,
-                      )),
+        body:Stack(
+          children: [
+            Container(
+              height: 100.h,
+              width: 100.w,
+              child: Opacity(opacity: 0.4,child: Image.asset("assets/images/map.png",fit: BoxFit.fill)),
+
+              ),
+            Center(child: Lottie.asset("assets/video/lottie/Comp 1.json")),
+            Align(alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: InkWell(onTap: (){
+                  home_providerf!.Datapickkk = Modeldata(
+
+                  );
+                  Navigator.pushNamed(context, "Lottie_Screen");
+                },
+                  child: Container(
+                    height:8.h,
+                    width:100.w,
+                    decoration: BoxDecoration(
+                      color:AppColor.violet,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 20, color:AppColor.fullwhite)
+                      ],
+                    ),
+                    child: Center(
+                      child: Text("Tap To Call",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.fullwhite,
+                            fontSize: 20.sp,
+                          )),
+                    ),
+                  ),
                 ),
               ),
+
             ),
 
-          ),
+          ],
+        ),
+        ),
+    );
+  }
+  Future<bool> dialog() async {
 
-        ],
-      ),
-      );
+
+    return await false;
   }
 }
