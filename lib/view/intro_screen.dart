@@ -19,44 +19,48 @@ class _intro1State extends State<intro1> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Stack(
-          alignment: Alignment.bottomRight,
-          children: [
-            Image.asset("assets/images/1.png",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),
-            Column(mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(onTap: (){
+    return WillPopScope(onWillPop: ()async {
+      return false;
+    },
+      child: Scaffold(
+        body: Container(
+          child: Stack(
+            alignment: Alignment.bottomRight,
+            children: [
+              Image.asset("assets/images/1.png",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),
+              Column(mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(onTap: (){
 
-                    Navigator.pushNamed(context,'Intro2');
+                      Navigator.pushNamed(context,'Intro2');
 
-                },
-                  child: Center(
-                    child: Container(
-                      height: 8.h,
-                      width: 90.w,
-                      decoration: BoxDecoration(
+                  },
+                    child: Center(
+                      child: Container(
+                        height: 8.h,
+                        width: 90.w,
+                        decoration: BoxDecoration(
 
-                        boxShadow: [
-                          BoxShadow(
-                        offset: Offset(0,7),
-                              blurRadius: 25,
-                              color: Color(0xFFD5A0FF))
-                        ],
-                        color: Color(0xFF9610FF),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Center(child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400)),
+                          boxShadow: [
+                            BoxShadow(
+                          offset: Offset(0,7),
+                                blurRadius: 25,
+                                color: Color(0xFFD5A0FF))
+                          ],
+                          color: Color(0xFF9610FF),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400)),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 30,),
-              ],
-            ),
+                  SizedBox(height: 30,),
+                ],
+              ),
 
-          ],
+            ],
+          ),
         ),
       ),
     );

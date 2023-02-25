@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_call_app02/utilies/constant.dart';
+import 'package:video_call_app02/view/home/fcall.dart';
 import 'package:video_call_app02/view/home/find_call.dart';
 import 'package:video_call_app02/view/home/home_screen.dart';
 import 'package:video_call_app02/view/home/like_screen.dart';
@@ -18,11 +19,11 @@ class Bottombar extends StatefulWidget {
 class _BottombarState extends State<Bottombar> {
 
   final items =  [
-    Icon(Icons.people, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.person, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.cable_outlined, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.add, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.search_outlined, size: 27.sp,color: AppColor.fullwhite,)
+    Icon(Icons.swipe, size: 27.sp,color: AppColor.fullwhite,),
+    Icon(Icons.video_call, size: 27.sp,color: AppColor.fullwhite,),
+    Icon(Icons.location_on, size: 27.sp,color: AppColor.fullwhite,),
+    Icon(Icons.call, size: 27.sp,color: AppColor.fullwhite,),
+    Icon(Icons.person, size: 27.sp,color: AppColor.fullwhite,)
   ];
 
   int index = 0;
@@ -70,6 +71,9 @@ Widget getSelectedWidget({required int index}){
       break;
     case 2:
       widget = const Like_screen();
+      break;
+    case 3:
+      widget = const Fcall_screen();
       break;
     default:
       widget = const Profile();

@@ -40,7 +40,7 @@ class _Lottie_ScreenState extends State<Lottie_Screen> {
           child: Container(
 
 
-            child:  Lottie.asset("assets/video/lottie/84691-whaiting.json"),
+            child:  Lottie.asset("assets/video/lottie/watch.json"),
 
 
 

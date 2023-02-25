@@ -66,16 +66,19 @@ class _ProfileState extends State<Profile> {
             title: Text("Gender",style: TextStyle(color: AppColor.fullblack),),
             trailing:  Text("Male",style: TextStyle(color: AppColor.fullblack),),
           ),
-          ListTile(
-            leading: Icon(Icons.logout,color: AppColor.fullred,size: 30.sp,),
-            title: Text("Log Out",style: TextStyle(color: AppColor.fullred),),
-            trailing: Icon(Icons.chevron_right_outlined,color: AppColor.fullblack,size: 25.sp,),
-          ),
 
-
-
-        ],
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, 'intro1');
+            },
+            child: ListTile(
+              leading: Icon(Icons.logout,color: AppColor.fullred,size: 30.sp,),
+              title: Text("Log Out",style: TextStyle(color: AppColor.fullred),),
+              trailing: Icon(Icons.chevron_right_outlined,color: AppColor.fullblack,size: 25.sp,),
+            ),
+          ),],
       ),
     );
   }
 }
+

@@ -77,14 +77,7 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
             InkWell(
               onTap: (){
 
-               // if(txtkey.currentState!.validate() == true){
 
-
-                    //String iname = txtnickname.text;
-                 //   setSHR(iname, true);
-
-
-               // }
                 Navigator.pushNamed(context, 'Gender');
 
 

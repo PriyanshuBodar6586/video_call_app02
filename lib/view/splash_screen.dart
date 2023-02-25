@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:sizer/sizer.dart';
 
 
 class splash_screen extends StatefulWidget {
@@ -25,7 +27,13 @@ class _splash_screenState extends State<splash_screen> {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child:FlutterLogo(curve: Curves.linear,size: 300),
+          child: Container(
+            height: 60.h,
+            width: 60.w,
+            child: Center(
+              child: Lottie.asset("assets/video/lottie/newScene.json"),
+            ),
+          ),
         ),
       ),
     );

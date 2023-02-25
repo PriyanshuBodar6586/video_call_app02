@@ -4,9 +4,10 @@ import 'dart:io';
 
 import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/utilies/constant.dart';
 import 'package:video_player/video_player.dart';
 
 
@@ -24,10 +25,10 @@ class Rvideo extends StatefulWidget {
 }
 
 class _RvideoState extends State<Rvideo> {
-  bool isloading=false;
+
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
-  // VideoPlayerController? videoPlayerController;
+   // VideoPlayerController? videoPlayerController;
   late VideoPlayerController _controller;
 
   @override
@@ -97,14 +98,14 @@ class _RvideoState extends State<Rvideo> {
                         ),
                         ElevatedButton(onPressed: () {
                           reportdilopg();
-                        }, child: Text("Report")),
+                        }, child: Text("Report"),style: ElevatedButton.styleFrom(primary:  AppColor.violet,),),
                         SizedBox(
                           width: 40,
                         ),
                         ElevatedButton(onPressed: () {
                           Navigator.pushNamed(context,'Lottie_Screen');
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User has been Block successfully"),));
-                        }, child: Text("Block")),
+                        }, child: Text("Block"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet,),),
                         SizedBox(
                           width: 5,
                         ),
@@ -117,9 +118,8 @@ class _RvideoState extends State<Rvideo> {
 
 
                           dialog();
-                          Navigator.pushReplacementNamed(context, 'Bottombar');
 
-                        }, child: Text("close"),style: ElevatedButton.styleFrom(primary: Colors.purpleAccent),),
+                        }, child: Text("close"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet,),),
                         ElevatedButton(onPressed: (){
 
 
@@ -128,7 +128,8 @@ class _RvideoState extends State<Rvideo> {
                           Navigator.pushReplacementNamed(context, 'Lottie_Screen');
 
 
-                        }, child: Text("Next"),style: ElevatedButton.styleFrom(primary: Colors.purpleAccent),),
+
+                        }, child: Text("Next"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet),),
 
 
 
@@ -161,7 +162,7 @@ class _RvideoState extends State<Rvideo> {
 
 
             ),
-            isloading?Center(child: Lottie.asset("assets/video/136926-loading-123.json"),):Container()
+
           ],
         ),
       ),
@@ -274,9 +275,5 @@ class _RvideoState extends State<Rvideo> {
   void back(){
     Navigator.pushReplacementNamed(context, 'Bottombar');
   }
-  Future<bool> chat()async{
-    home_providerf!.playpause();
-    _controller.pause();
-    return await false;
-  }
+
 }

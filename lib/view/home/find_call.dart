@@ -34,7 +34,10 @@ class _Find_callState extends State<Find_call> {
               child: Opacity(opacity: 0.4,child: Image.asset("assets/images/map.png",fit: BoxFit.fill)),
 
               ),
-            Center(child: Lottie.asset("assets/video/lottie/Comp 1.json")),
+            Align(alignment: Alignment.bottomCenter,
+
+                child: Lottie.asset("assets/video/lottie/Comp 1.json")),
+
             Align(alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.all(20),

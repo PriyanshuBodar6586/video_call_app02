@@ -22,8 +22,9 @@ class _Home_screenPageState extends State<Home_screen> {
 
   @override
   void initState() {
-    _loadCards();
+
     super.initState();
+     _loadCards();
   }
 
   void _loadCards() {
