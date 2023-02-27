@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
 
 
 class Intro3 extends StatefulWidget {
@@ -28,17 +30,17 @@ class _Intro3State extends State<Intro3> {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: InkWell(onTap: (){
-                        //interVideoAds();
-                        //  setState(() {
-                        //    isloading = true;
-                        //  });
-                        //  Timer(Duration(seconds: 7), () {
-                        //    setState(() {
-                        //     isloading = false ;
-                        //    });
-                        //
-                        //  });
-                        Navigator.pushNamed(context,'Nickname_Screen');
+                        interVideoAds();
+                         setState(() {
+                           isloading = true;
+                         });
+                         Timer(Duration(seconds: 7), () {
+                           setState(() {
+                            isloading = false ;
+                           });
+                           Navigator.pushNamed(context,'Nickname_Screen');
+                         });
+
 
                       },
                         child: Center(
@@ -69,7 +71,7 @@ class _Intro3State extends State<Intro3> {
               ],
             ),
           ),
-         // isloading?Center(child: Lottie.asset("assets/video/136926-loading-123.json"),):Container()
+          isloading?Center(child: Lottie.asset("assets/video/lottie/92477-wagmi-loading.json"),):Container(),
         ],
       ),
     );

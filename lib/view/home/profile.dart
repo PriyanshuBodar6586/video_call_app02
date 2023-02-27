@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/model.dart';
 import 'package:video_call_app02/utilies/constant.dart';
 
 class Profile extends StatefulWidget {
@@ -12,6 +13,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
     return Scaffold(
       backgroundColor: AppColor.fullwhite,
       appBar: AppBar(
@@ -53,7 +55,7 @@ class _ProfileState extends State<Profile> {
           ),
           ListTile(
             leading: Icon(Icons.person,color: AppColor.fullblack,size: 30.sp,),
-            title: Text("Name"),
+            title: Text("${m1.name}"),
             trailing: Icon(Icons.chevron_right_outlined,color: AppColor.fullblack,size: 25.sp,),
           ),
           ListTile(

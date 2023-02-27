@@ -129,6 +129,7 @@ class _Fcall_playState extends State<Fcall_play> {
                 child: FloatingActionButton(
                   onPressed: () {
                     dialog();
+                    Navigator.pushReplacementNamed(context, 'Bottombar');
                   },
                   child: Icon(
                     Icons.call,
@@ -236,11 +237,8 @@ class _Fcall_playState extends State<Fcall_play> {
   Future<bool> dialog() async {
     home_providerf!.playpause();
     _controller.pause();
-    back();
     return await false;
   }
 
-  void back() {
-    Navigator.pushReplacementNamed(context, 'Bottombar');
-  }
+
 }

@@ -1,9 +1,16 @@
 import 'dart:async';
-import 'dart:ffi';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
+import 'package:video_call_app02/utilies/adsconstant.dart';
+
+import '../model/adsmodel.dart';
 
 
 class splash_screen extends StatefulWidget {
@@ -14,11 +21,66 @@ class splash_screen extends StatefulWidget {
 }
 
 class _splash_screenState extends State<splash_screen> {
+  late StreamSubscription subscription;
+  var isDeviceConnected = false;
+  bool isAlertSet = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    islogin();
+    getConnectivity();
+     isLogin();
+  }
+
+  getConnectivity() {
+    subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) async {
+      isDeviceConnected = await InternetConnectionChecker().hasConnection;
+      print("internet---------->$isDeviceConnected");
+      if (isDeviceConnected == false && isAlertSet == false) {
+        showDialogBox();
+        setState(() {
+          isAlertSet = true;
+        });
+      } else {
+        getAdid();
+        isLogin();
+      }
+    });
+  }
+
+  void showDialogBox() {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: const Text("No Connection"),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () async {
+                  Navigator.pop(context, 'Cancel');
+                  setState(() {
+                    isAlertSet = false;
+                  });
+                  isDeviceConnected =
+                  await InternetConnectionChecker().hasConnection;
+                  if (!isDeviceConnected) {
+                    showDialogBox();
+                    setState(() {
+                      isAlertSet = true;
+                    });
+                  } else {
+                    getAdid();
+                    isLogin();
+                  }
+                },
+                child: const Text("ok"))
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -39,37 +101,38 @@ class _splash_screenState extends State<splash_screen> {
     );
 
   }
-  void islogin(){
-   Timer(Duration(seconds: 4),()=>Navigator.pushReplacementNamed(context,'intro1'));
-  }
-// void isLogin()async{
-  //   SHRModel s1 = await getSHR();
-  //   if(s1.login == true){
-  //     Timer(Duration(seconds: 7),
-  //             ()=>Navigator.pushReplacementNamed(context,'done')
-  //     );}
-  //   else{
-  //     Timer(Duration(seconds: 7),
-  //             ()=>Navigator.pushReplacementNamed(context, 'Privacy')
-  //     );
-  //   }
-  // }
-  // getAdid()async{
-  //   Map<String, String> requestHeaders = {
-  //     'Host': '<calculated when request is sent>',
-  //     'User-Agent': 'PostmanRuntime/7.30.0',
-  //     'Accept': '*/*',
-  //     'Accept-Encoding': 'gzip, deflate, br',
-  //     'Connection': 'keep-alive',
-  //     'authorization': 'admin',
-  //   };
-  //   String newslike = "http://3.108.31.187:8080/get-appkey/6";
-  //   var newsString = await http.get(Uri.parse(newslike),headers:requestHeaders);
+  void isLogin()async{
+    if (isDeviceConnected == false) {
+      showDialogBox();
+    }
+    else{
+      // SHRModel s1 = await getSHR();
+      // if(s1.login == true){
+      //   Timer(Duration(seconds: 7),
+      //           ()=>Navigator.pushReplacementNamed(context,'done')
+      //   );}
+      // else{
+      Timer(Duration(seconds: 7),
+              ()=>Navigator.pushReplacementNamed(context, 'intro1')
+      );
+       }
+    }
+    getAdid()async{
+      Map<String, String> requestHeaders = {
+        'Host': '<calculated when request is sent>',
+        'User-Agent': 'PostmanRuntime/7.30.0',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'authorization': 'admin',
+      };
+      String newslike = "http://3.108.31.187:8080/get-appkey/6";
+      var newsString = await http.get(Uri.parse(newslike),headers:requestHeaders);
 
-    // print(newsString);
-    // newsjson = adModelFromJson(newsString.body);
+      print(newsString);
+      newsjson = adModelFromJson(newsString.body);
 
-  //   print('-----data----->${newsjson?.data[0].keyId}');
-  //   openAds();
-  // }
+      print('-----data----->${newsjson?.data[0].keyId}');
+      openAds();
+    }
 }

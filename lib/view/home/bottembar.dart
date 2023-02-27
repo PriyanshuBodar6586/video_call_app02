@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/provider/home_provider.dart';
 import 'package:video_call_app02/utilies/constant.dart';
 import 'package:video_call_app02/view/home/fcall.dart';
 import 'package:video_call_app02/view/home/find_call.dart';
 import 'package:video_call_app02/view/home/home_screen.dart';
 import 'package:video_call_app02/view/home/like_screen.dart';
 import 'package:video_call_app02/view/home/profile.dart';
-
-
-void main() => runApp(MaterialApp(home: Bottombar()));
 
 class Bottombar extends StatefulWidget {
   @override
@@ -18,30 +17,25 @@ class Bottombar extends StatefulWidget {
 
 class _BottombarState extends State<Bottombar> {
 
-  final items =  [
-    Icon(Icons.swipe, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.video_call, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.location_on, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.call, size: 27.sp,color: AppColor.fullwhite,),
-    Icon(Icons.person, size: 27.sp,color: AppColor.fullwhite,)
-  ];
-
-  int index = 0;
-
-
+  List WidgetsList=[Home_screen(),Find_call(),Like_screen(),Fcall_screen(),Profile(),];
+  Home_Provider ? home_providert;
+  Home_Provider ? home_providerf;
   @override
   Widget build(BuildContext context) {
+    home_providert = Provider.of<Home_Provider>(context,listen: true);
+    home_providerf = Provider.of<Home_Provider>(context,listen: false);
     return Scaffold(
-
-
       bottomNavigationBar: CurvedNavigationBar(
-
-        items: items,
-        index: index,
-        onTap: (selctedIndex){
-          setState(() {
-            index = selctedIndex;
-          });
+        items: [
+          Icon(Icons.swipe, size: 27.sp,color: AppColor.fullwhite,),
+          Icon(Icons.video_call, size: 27.sp,color: AppColor.fullwhite,),
+          Icon(Icons.location_on, size: 27.sp,color: AppColor.fullwhite,),
+          Icon(Icons.call, size: 27.sp,color: AppColor.fullwhite,),
+          Icon(Icons.person, size: 27.sp,color: AppColor.fullwhite,),
+        ],
+        index: Provider.of<Home_Provider>(context,listen:true).i ,
+        onTap: (value){
+          Provider.of<Home_Provider>(context,listen:false).changeicon(value);
         },
         height: 60,
         color: AppColor.violet,
@@ -50,36 +44,8 @@ class _BottombarState extends State<Bottombar> {
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 600),
       ),
-      body: Container(
-          color: Colors.blue,
-          width: double.infinity,
-          height: double.infinity,
-          alignment: Alignment.center,
-          child: getSelectedWidget(index: index)
-      ),
+      body: WidgetsList[Provider.of<Home_Provider>(context,listen: true).i],
     );
   }
-}
-Widget getSelectedWidget({required int index}){
-  Widget widget;
-  switch(index){
-    case 0:
-      widget = const Home_screen();
-      break;
-    case 1:
-      widget = const Find_call();
-      break;
-    case 2:
-      widget = const Like_screen();
-      break;
-    case 3:
-      widget = const Fcall_screen();
-      break;
-    default:
-      widget = const Profile();
-      break;
-
-  }
-  return widget;
 }
 

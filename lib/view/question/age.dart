@@ -1,7 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
+import 'package:video_call_app02/model/model.dart';
+import 'package:video_call_app02/utilies/adsconstant.dart';
 
 
 
@@ -13,17 +18,33 @@ class Age extends StatefulWidget {
 }
 
 class _AgeState extends State<Age> {
+  bool isloading=false;
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+  @override
+  void initState() {
 
+    super.initState();
+    bannerAds();
+    fornative();
+  }
 
   @override
   Widget build(BuildContext context) {
+    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
     return Scaffold(
-      body: Stack(alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            child: Stack(
-              alignment: Alignment.bottomCenter,
+      body: Container(
+        child: Stack(
+          children: [
+
+
+            Stack(
+              alignment: Alignment.topCenter,
               children: [
+                SizedBox(
+                  height: 60.h,
+                ),
+
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
@@ -60,10 +81,24 @@ class _AgeState extends State<Age> {
                         )),
                   ),
                 ),
+                SizedBox(
+                  height: 30.h,
+                ),
 
+                isAdLoaded?
+                Container(
+                  height: 30.h,
+                  alignment: Alignment.center,
+                  child: AdWidget(ad: nativead!),
+                ) :
+                Container(
+                  height: 30.h,
+                  alignment: Alignment.center,
+                  child: Center(child: const CircularProgressIndicator()),
+                ),
                 Column(mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                 
+
                     Container(
                       height: 7.h,
                       width: 75.w,
@@ -85,7 +120,7 @@ class _AgeState extends State<Age> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 2.h,
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -94,8 +129,17 @@ class _AgeState extends State<Age> {
                         children: [
                           InkWell(onTap: (){
 
-                        
-                            Navigator.pushNamed(context,'love');
+                            interVideoAds();
+                            setState(() {
+                              isloading = true;
+                            });
+                            Timer(Duration(seconds: 7), () {
+                              setState(() {
+                                isloading = false ;
+                              });
+                              Navigator.pushNamed(context,'love',arguments: m1);
+                            });
+
 
 
 
@@ -125,8 +169,17 @@ class _AgeState extends State<Age> {
                             height: 10,
                           ),
                           InkWell(onTap: (){
-                   
-                            Navigator.pushNamed(context,'love');
+
+                            interVideoAds();
+                            setState(() {
+                              isloading = true;
+                            });
+                            Timer(Duration(seconds: 7), () {
+                              setState(() {
+                                isloading = false ;
+                              });
+                              Navigator.pushNamed(context,'love',arguments: m1);
+                            });
 
 
                           },
@@ -155,8 +208,17 @@ class _AgeState extends State<Age> {
                             height: 10,
                           ),
                           InkWell(onTap: (){
-                         
-                            Navigator.pushNamed(context,'love');
+
+                            interVideoAds();
+                            setState(() {
+                              isloading = true;
+                            });
+                            Timer(Duration(seconds: 7), () {
+                              setState(() {
+                                isloading = false ;
+                              });
+                              Navigator.pushNamed(context,'love',arguments: m1);
+                            });
 
 
                           },
@@ -185,8 +247,17 @@ class _AgeState extends State<Age> {
                             height: 10,
                           ),
                           InkWell(onTap: (){
-           
-                            Navigator.pushNamed(context,'love');
+
+                            interVideoAds();
+                            setState(() {
+                              isloading = true;
+                            });
+                            Timer(Duration(seconds: 7), () {
+                              setState(() {
+                                isloading = false ;
+                              });
+                              Navigator.pushNamed(context,'love',arguments: m1);
+                            });
 
                           },
                             child: Container(
@@ -252,14 +323,40 @@ class _AgeState extends State<Age> {
 
                   ],
                 ),
-
+                isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container(),
+                Align(alignment: Alignment.bottomCenter,
+                  child: SizedBox(height: 80,
+                    child: AdWidget(ad: bannerAd!,),),
+                ),
               ],
             ),
-          ),
-  
-        ],
+          ],
+        ),
       ),
     );
   }
+  void fornative() {
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              fornative();
 
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
+
+  }
 }

@@ -1,5 +1,7 @@
 
+import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_call_app02/view/home/bottembar.dart';
@@ -12,6 +14,7 @@ import 'package:video_call_app02/view/intro_screen2.dart';
 import 'package:video_call_app02/view/intro_screnn3.dart';
 import 'package:video_call_app02/view/question/age.dart';
 import 'package:video_call_app02/view/question/country.dart';
+import 'package:video_call_app02/view/question/done.dart';
 import 'package:video_call_app02/view/question/gender.dart';
 import 'package:video_call_app02/view/question/interest.dart';
 import 'package:video_call_app02/view/question/nick_name.dart';
@@ -22,8 +25,8 @@ import 'view/question/love_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // MobileAds.instance.initialize();//Add this
-  // await FaceCamera.initialize();
+   MobileAds.instance.initialize();//Add this
+   await FaceCamera.initialize();
   runApp(
     MultiProvider(
       providers: [
@@ -36,7 +39,7 @@ void main() async {
               colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
             ),
             debugShowCheckedModeBanner: false,
-            initialRoute: 'Country',
+
 
 
 
@@ -56,6 +59,7 @@ void main() async {
               'Fcall_screen': (contest) => Fcall_screen(),
               'Fcall_play': (contest) => Fcall_play(),
               'near_post': (contest) => near_post(),
+              'Done': (contest) => Done(),
 
             },
           );

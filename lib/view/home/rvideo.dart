@@ -4,13 +4,13 @@ import 'dart:io';
 
 import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
-
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_call_app02/utilies/constant.dart';
 import 'package:video_player/video_player.dart';
 
-
+import '../../model/ads_screen.dart';
 import '../../provider/home_provider.dart';
 
 
@@ -25,10 +25,10 @@ class Rvideo extends StatefulWidget {
 }
 
 class _RvideoState extends State<Rvideo> {
-
+  bool isloading=false;
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
-   // VideoPlayerController? videoPlayerController;
+  // VideoPlayerController? videoPlayerController;
   late VideoPlayerController _controller;
 
   @override
@@ -48,123 +48,130 @@ class _RvideoState extends State<Rvideo> {
   Widget build(BuildContext context) {
     home_providerf = Provider.of<Home_Provider>(context,listen: false);
     home_providert = Provider.of<Home_Provider>(context,listen: true);
-    return WillPopScope(
-      onWillPop:dialog,
-      child: SafeArea(
-        child: Stack(
-          children: [
-            Scaffold(
-              resizeToAvoidBottomInset: false,
-              backgroundColor: Colors.black,
-              body: Builder(builder: (context){
-                if (_capturedImage != null) {
-                  return Center(
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Image.file(_capturedImage!),
-                      ],
-                    ),
-                  );
-                }
-                return  Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height*1,
-                          width: MediaQuery.of(context).size.width*0.99,
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: _controller.value.isInitialized
-                                  ?
-                              AspectRatio(
-                                  aspectRatio: _controller.value.aspectRatio,
-                                  child: VideoPlayer(_controller))
-                                  :
-                              Center(child: const CircularProgressIndicator(color: Colors.green,))
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        ElevatedButton(onPressed: () {
-                          reportdilopg();
-                        }, child: Text("Report"),style: ElevatedButton.styleFrom(primary:  AppColor.violet,),),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        ElevatedButton(onPressed: () {
-                          Navigator.pushNamed(context,'Lottie_Screen');
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User has been Block successfully"),));
-                        }, child: Text("Block"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet,),),
-                        SizedBox(
-                          width: 5,
-                        ),
-                      ],
-                    ),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-
-                        ElevatedButton(onPressed: (){
-
-
-                          dialog();
-
-                        }, child: Text("close"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet,),),
-                        ElevatedButton(onPressed: (){
-
-
-
-
-                          Navigator.pushReplacementNamed(context, 'Lottie_Screen');
-
-
-
-                        }, child: Text("Next"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet),),
-
-
-
-
-
-
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            height: MediaQuery.of(context).size.height*0.27,
-                            width: MediaQuery.of(context).size.width*0.35,
-                            child: SmartFaceCamera(
-                              showCameraLensControl: false,
-                              showControls: false,
-                              showFlashControl: false,
-                              autoCapture: true,
-                              defaultCameraLens: CameraLens.front,
-                              onCapture: (File? image) {
-                                _capturedImage = image;
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-
+    return SafeArea(
+      child: Stack(
+        children: [
+          Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.black,
+            body: Builder(builder: (context){
+              if (_capturedImage != null) {
+                return Center(
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Image.file(_capturedImage!),
+                    ],
+                  ),
                 );
-              }),
+              }
+              return  Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height*1,
+                        width: MediaQuery.of(context).size.width*0.99,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: _controller.value.isInitialized
+                                ?
+                            AspectRatio(
+                                aspectRatio: _controller.value.aspectRatio,
+                                child: VideoPlayer(_controller))
+                                :
+                            Center(child: const CircularProgressIndicator(color: Colors.green,))
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(onPressed: () {
+                        reportdilopg();
+                      }, child: Text("Report"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet)),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      ElevatedButton(onPressed: () {
+                        Navigator.pushNamed(context,'Lottie_Screen');
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User has been Block successfully"),));
+                      }, child: Text("Block"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet)),
+                      SizedBox(
+                        width: 5,
+                      ),
+                    ],
+                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+
+                      ElevatedButton(onPressed: (){
 
 
-            ),
+                        dialog();
+                        Navigator.pushReplacementNamed(context, 'Bottombar');
 
-          ],
-        ),
+                      }, child: Text("close"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet),),
+                      ElevatedButton(onPressed: (){
+
+
+                        rewardAds();
+                        setState(() {
+                          isloading = true;
+                        });
+                        Timer(Duration(seconds: 7), () {
+                          setState(() {
+                            isloading = false ;
+                          });
+                          Navigator.pushReplacementNamed(context, 'Lottie_Screen');
+                        });
+
+
+
+
+
+                      }, child: Text("Next"),style: ElevatedButton.styleFrom(backgroundColor: AppColor.violet),),
+
+
+
+
+
+
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height*0.27,
+                          width: MediaQuery.of(context).size.width*0.35,
+                          child: SmartFaceCamera(
+                            showCameraLensControl: false,
+                            showControls: false,
+                            showFlashControl: false,
+                            autoCapture: true,
+                            defaultCameraLens: CameraLens.front,
+                            onCapture: (File? image) {
+                              _capturedImage = image;
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+
+              );
+            }),
+
+
+          ),
+          isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container()
+        ],
       ),
     );
   }
@@ -275,5 +282,9 @@ class _RvideoState extends State<Rvideo> {
   void back(){
     Navigator.pushReplacementNamed(context, 'Bottombar');
   }
-
+  Future<bool> chat()async{
+    home_providerf!.playpause();
+    _controller.pause();
+    return await false;
+  }
 }
