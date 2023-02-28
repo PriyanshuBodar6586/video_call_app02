@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/utilies/adsconstant.dart';
 
 import '../../provider/home_provider.dart';
 
@@ -15,6 +17,16 @@ class near_post extends StatefulWidget {
 class _near_postState extends State<near_post> {
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
+  bool isloading = false;
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    fornative();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -72,7 +84,7 @@ class _near_postState extends State<near_post> {
             ],
           ),
           SizedBox(height: 3.h,),
-          Container(height: 20.h,width: 100.w,color: Colors.black,),
+          Container(height: 30.h,width: 100.w,color: Colors.black,),
           SizedBox(height: 3.h,),
 
           Row(mainAxisAlignment: MainAxisAlignment.center,
@@ -105,5 +117,22 @@ class _near_postState extends State<near_post> {
         ],
       ),
     );
+  }
+  void fornative() {
+    try {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(onAdLoaded: (_) {
+          setState(() {
+            isAdLoaded = true;
+          });
+        }, onAdFailedToLoad: (ad, error) {
+          fornative();
+        }),
+      );
+      nativead!.load();
+    } on Exception {}
   }
 }

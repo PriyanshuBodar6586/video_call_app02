@@ -82,18 +82,20 @@ class _Find_callState extends State<Find_call> {
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: InkWell(
-                  onTap: () {
-                    interVideoAds();
-                    setState(() {
-                      isloading = true;
-                    });
-                    Timer(Duration(seconds: 7), () {
+
+                    onTap: () {
+                      interVideoAds();
                       setState(() {
-                        isloading = false;
+                        isloading = true;
                       });
-                      home_providerf!.Datapickkk = Modeldata();
-                      Navigator.pushNamed(context, "Lottie_Screen");
-                    });
+                      Timer(Duration(seconds: 7), () {
+                        setState(() {
+                          isloading = false;
+                        });
+                        Navigator.pushNamed(context, "Fcall_play");
+                      });
+
+
                   },
                   child: Container(
                     height: 8.h,
@@ -117,6 +119,7 @@ class _Find_callState extends State<Find_call> {
                 ),
               ),
             ),
+            isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container()
           ],
         ),
       ),

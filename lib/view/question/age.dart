@@ -41,6 +41,27 @@ class _AgeState extends State<Age> {
             Stack(
               alignment: Alignment.topCenter,
               children: [
+                Column(mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 20.h,
+                    ),
+
+                    isAdLoaded?
+                    Container(
+                      height: 30.h,
+                      alignment: Alignment.center,
+                      child: AdWidget(ad: nativead!),
+                    ) :
+                    Container(
+                      height: 30.h,
+                      alignment: Alignment.center,
+                      child: Center(child: const CircularProgressIndicator()),
+
+                    ),
+
+                  ],
+                ),
                 SizedBox(
                   height: 60.h,
                 ),
@@ -81,21 +102,7 @@ class _AgeState extends State<Age> {
                         )),
                   ),
                 ),
-                SizedBox(
-                  height: 30.h,
-                ),
 
-                isAdLoaded?
-                Container(
-                  height: 30.h,
-                  alignment: Alignment.center,
-                  child: AdWidget(ad: nativead!),
-                ) :
-                Container(
-                  height: 30.h,
-                  alignment: Alignment.center,
-                  child: Center(child: const CircularProgressIndicator()),
-                ),
                 Column(mainAxisAlignment: MainAxisAlignment.end,
                   children: [
 
