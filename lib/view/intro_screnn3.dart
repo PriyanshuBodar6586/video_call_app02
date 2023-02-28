@@ -71,8 +71,7 @@ class _Intro3State extends State<Intro3> {
               ],
             ),
           ),
-          isloading?Center(child: Lottie.asset("assets/video/lottie/92477-wagmi-loading.json"),):Container(),
-        ],
+          isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container(),        ],
       ),
     );
   }

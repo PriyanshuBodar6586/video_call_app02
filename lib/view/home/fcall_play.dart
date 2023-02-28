@@ -129,6 +129,7 @@ class _Fcall_playState extends State<Fcall_play> {
                 child: FloatingActionButton(
                   onPressed: () {
                     dialog();
+                   
                     Navigator.pushReplacementNamed(context, 'Bottombar');
                   },
                   child: Icon(
@@ -141,6 +142,19 @@ class _Fcall_playState extends State<Fcall_play> {
             )),
       ),
     );
+  }
+  Future<bool> dialog() async {
+    home_providerf!.playpause();
+    _controller.pause();
+    back();
+    return await false;
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    dialog();
   }
   void reportdilopg(){
     showModalBottomSheet(context: context,
@@ -234,7 +248,10 @@ class _Fcall_playState extends State<Fcall_play> {
         });
   }
 
-  Future<bool> dialog() async {
+  void back(){
+    Navigator.pushReplacementNamed(context, 'Bottombar');
+  }
+  Future<bool> chat()async{
     home_providerf!.playpause();
     _controller.pause();
     return await false;
