@@ -32,7 +32,7 @@ class _DoneState extends State<Done> {
   }
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+
     home_providerF = Provider.of<Home_Provider>(context, listen: false);
     home_providerT = Provider.of<Home_Provider>(context, listen: true);
     return Scaffold(
@@ -81,7 +81,7 @@ class _DoneState extends State<Done> {
                     setState(() {
                       isloading = false ;
                     });
-                    Navigator.pushNamed(context, 'Bottombar',arguments: m1);
+                    Navigator.pushNamed(context, 'Bottombar',);
                   });
 
 

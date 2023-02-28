@@ -30,7 +30,7 @@ class _CountryState extends State<Country> {
 
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 00,
@@ -159,7 +159,7 @@ class _CountryState extends State<Country> {
                       setState(() {
                         isloading = false;
                       });
-                      Navigator.pushNamed(context, 'Done', arguments: m1);
+                      Navigator.pushNamed(context, 'Done',);
                     });
                   },
                   child: Container(

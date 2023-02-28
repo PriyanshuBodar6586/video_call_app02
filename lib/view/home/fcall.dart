@@ -1,10 +1,13 @@
 import 'dart:async';
 
+
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
 import 'package:video_call_app02/model/model.dart';
 import 'package:video_call_app02/utilies/adsconstant.dart';
 import 'package:video_call_app02/utilies/constant.dart';
@@ -26,11 +29,7 @@ class _Fcall_screenState extends State<Fcall_screen> {
   NativeAd? nativead;
   bool isAdLoaded = false;
 
-  @override
-  void initState() {
-    super.initState();
-    fornative();
-  }
+
 
 
   @override
@@ -56,72 +55,61 @@ class _Fcall_screenState extends State<Fcall_screen> {
             ),
             body: Stack(
               children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    isAdLoaded
-                        ? Container(
-                      height: 30.h,
-                      alignment: Alignment.center,
-                      child: AdWidget(ad: nativead!),
-                    )
-                        : Container(
-                      height: 30.h,
-                      alignment: Alignment.center,
-                      child: Center(child: const CircularProgressIndicator()),
-                    ),
-                  ],
-                ),
+
                 Align(alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 55.h,
-                    width: 100.w,
-                    child: GridView.builder(
-                      itemCount: home_providerf!.i1.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisExtent: 32.h),
-                      itemBuilder: (contest, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: InkWell(
-                            onTap: () {
-
-
+                  child: GridView.builder(
+                    itemCount: home_providerf!.i1.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisExtent: 32.h),
+                    itemBuilder: (contest, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: InkWell(
+                          onTap: () {
+                            interVideoAds();
+                            setState(() {
+                              isloading = true;
+                            });
+                            Timer(Duration(seconds: 7), () {
+                              setState(() {
+                                isloading = false;
+                              });
                               home_providerf!.Datapickkk = Modeldata(
                                 Name: home_providerf!.i1[index].Name,
                                 Image: home_providerf!.i1[index].Image,
                                 video: home_providerf!.i1[index].video,
                               );
                               Navigator.pushNamed(context, 'Fcall_play');
+                            });
 
 
 
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 30.h,
-                                  width: 48.w,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          "${home_providerf!.i1[index].Image}",
-                                          fit: BoxFit.fill,
-                                          height: 35.h,
-                                          width: 48.w,
-                                        ),
+
+
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 30.h,
+                                width: 48.w,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Stack(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.asset(
+                                        "${home_providerf!.i1[index].Image}",
+                                        fit: BoxFit.fill,
+                                        height: 35.h,
+                                        width: 48.w,
                                       ),
-                                      Container(
-                                        height: 100.h,
-                                        width: 100.w,
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),gradient: LinearGradient(
+                                    ),
+                                    Container(
+                                      height: 100.h,
+                                      width: 100.w,
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),gradient: LinearGradient(
                                           begin:Alignment.topCenter ,
 
                                           end: Alignment.bottomCenter,
@@ -131,68 +119,68 @@ class _Fcall_screenState extends State<Fcall_screen> {
                                             AppColor.lviolet,
 
                                           ]
-                                        )),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.all(5.sp),
+                                      )),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(5.sp),
 
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                children: [
-                                                   Row(
-                                                     mainAxisAlignment:
-                                                     MainAxisAlignment.start,
-                                                     children: [
-                                                       Padding(
-                                                         padding: EdgeInsets.symmetric(
-                                                             horizontal: 5.0.sp),
-                                                         child: Text(
-                                                           "${home_providerf!.i1[index].Name}",
-                                                           style: TextStyle(
-                                                               color: Colors.white,
-                                                               fontSize: 18),
-                                                         ),
-                                                       ),
-                                                     ],
-                                                   ),
-                                                  Padding(
-                                                    padding: EdgeInsets.all(2.0.sp),
-                                                    child: Row(
-
-                                                      children: [
-
-                                                        Text(
-                                                          "Hot",
-                                                          style: TextStyle(
-                                                              color: Colors.white),
-                                                        ),
-                                                      ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal: 5.0.sp),
+                                                      child: Text(
+                                                        "${home_providerf!.i1[index].Name}",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 11.sp),
+                                                      ),
                                                     ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.all(2.0.sp),
+                                                  child: Row(
+
+                                                    children: [
+
+                                                      Text(
+                                                        "Hot",
+                                                        style: TextStyle(
+                                                            color: Colors.white),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
+                isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container(),
               ],
             ),
           ),
@@ -200,22 +188,6 @@ class _Fcall_screenState extends State<Fcall_screen> {
       ),
     );
   }
-  void fornative() {
-    try {
-      nativead = NativeAd(
-        adUnitId: '$na',
-        factoryId: 'listTile',
-        request: const AdRequest(),
-        listener: NativeAdListener(onAdLoaded: (_) {
-          setState(() {
-            isAdLoaded = true;
-          });
-        }, onAdFailedToLoad: (ad, error) {
-          fornative();
-        }),
-      );
-      nativead!.load();
-    } on Exception {}
-  }
+
 
 }

@@ -30,7 +30,7 @@ class _interestState extends State<interest> {
 
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 00,
@@ -157,7 +157,7 @@ class _interestState extends State<interest> {
                       setState(() {
                         isloading = false;
                       });
-                      Navigator.pushNamed(context, 'Country', arguments: m1);
+                      Navigator.pushNamed(context, 'Country',);
                     });
                   },
                   child: Container(

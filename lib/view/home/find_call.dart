@@ -92,10 +92,8 @@ class _Find_callState extends State<Find_call> {
                         setState(() {
                           isloading = false;
                         });
-                        Navigator.pushNamed(context, "Fcall_play");
+                        Navigator.pushNamed(context, "Lottie_Screen");
                       });
-
-
                   },
                   child: Container(
                     height: 8.h,

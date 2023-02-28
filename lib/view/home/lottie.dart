@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:video_call_app02/model/model.dart';
 import 'package:video_call_app02/provider/home_provider.dart';
 import 'package:video_call_app02/view/home/rvideo.dart';
 
@@ -26,8 +25,6 @@ class _Lottie_ScreenState extends State<Lottie_Screen> {
     Random random = new Random();
     randomNumber = random.nextInt(Provider.of<Home_Provider>(context,listen: false).i2.length);
   }
-
-
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 05), () {
@@ -36,9 +33,7 @@ class _Lottie_ScreenState extends State<Lottie_Screen> {
         return Rvideo(Provider.of<Home_Provider>(context,listen: false).i2[randomNumber!].video!);
       },));
     });
-
     return WillPopScope(onWillPop: dialog,
-
       child: Scaffold(
         backgroundColor: Color(0xffffffff),
         body: Center(

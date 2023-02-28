@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
 
-
-class Home_screenButton extends StatelessWidget {
+class Home_screenButton extends StatefulWidget {
   final Function onTap;
   final Widget child;
 
@@ -14,18 +16,24 @@ class Home_screenButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<Home_screenButton> createState() => _Home_screenButtonState();
+}
+
+class _Home_screenButtonState extends State<Home_screenButton> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(),
-      child: child,
+      onTap: () => widget.onTap(),
+      child: widget.child,
     );
   }
 }
 
-//swipe card to the right side
-Widget swipeRightButton(AppinioSwiperController controller) {
+bool isloading = false;
+
+Widget swipeRightButton(AppinioSwiperController controller,void Function() onTap) {
   return Home_screenButton(
-    onTap: () => controller.swipeRight(),
+    onTap: onTap,
     child: Container(
       height: 60,
       width: 60,
@@ -52,9 +60,9 @@ Widget swipeRightButton(AppinioSwiperController controller) {
 }
 
 //swipe card to the left side
-Widget swipeLeftButton(AppinioSwiperController controller) {
+Widget swipeLeftButton(AppinioSwiperController controller,void Function() onTap) {
   return Home_screenButton(
-    onTap: () => controller.swipeLeft(),
+    onTap:onTap,
     child: Container(
       height: 60,
       width: 60,

@@ -31,7 +31,7 @@ class _AgeState extends State<Age> {
 
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+
     return Scaffold(
       body: Container(
         child: Stack(
@@ -144,7 +144,7 @@ class _AgeState extends State<Age> {
                               setState(() {
                                 isloading = false ;
                               });
-                              Navigator.pushNamed(context,'love',arguments: m1);
+                              Navigator.pushNamed(context,'love',);
                             });
 
 
@@ -185,7 +185,7 @@ class _AgeState extends State<Age> {
                               setState(() {
                                 isloading = false ;
                               });
-                              Navigator.pushNamed(context,'love',arguments: m1);
+                              Navigator.pushNamed(context,'love',);
                             });
 
 
@@ -224,7 +224,7 @@ class _AgeState extends State<Age> {
                               setState(() {
                                 isloading = false ;
                               });
-                              Navigator.pushNamed(context,'love',arguments: m1);
+                              Navigator.pushNamed(context,'love',);
                             });
 
 
@@ -263,7 +263,7 @@ class _AgeState extends State<Age> {
                               setState(() {
                                 isloading = false ;
                               });
-                              Navigator.pushNamed(context,'love',arguments: m1);
+                              Navigator.pushNamed(context,'love');
                             });
 
                           },

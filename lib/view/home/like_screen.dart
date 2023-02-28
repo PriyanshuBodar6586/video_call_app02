@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
 import 'package:video_call_app02/model/model.dart';
 import 'package:video_call_app02/utilies/adsconstant.dart';
 import 'package:video_call_app02/utilies/constant.dart';
@@ -79,13 +80,24 @@ class _Like_screenState extends State<Like_screen> {
                           ),
                           child: InkWell(
                             onTap: (){
-                              home_providerf!.Datapickkk = Modeldata(
-                                Image: home_providerf!.i1[index].Image,
-                                Name: home_providerf!.i1[index].Name,
+                              interVideoAds();
+                              setState(() {
+                                isloading = true;
+                              });
+                              Timer(Duration(seconds: 7), () {
+                                setState(() {
+                                  isloading = false ;
+                                });
+                                home_providerf!.Datapickkk = Modeldata(
+                                  Image: home_providerf!.i1[index].Image,
+                                  Name: home_providerf!.i1[index].Name,
 
-                              );
+                                );
 
-                              Navigator.pushNamed(context, 'near_post');
+                                Navigator.pushNamed(context, 'near_post');
+                              });
+
+
                             },
                             child: ListTile (
                               leading:CircleAvatar(child: ClipRRect(borderRadius: BorderRadius.circular(80) ,child: Image.asset("${home_providerf!.i1[index].Image}",fit: BoxFit.fill,height: 150,width: 150,))),
@@ -102,7 +114,7 @@ class _Like_screenState extends State<Like_screen> {
               ],
             ),
           ),
-          isloading?Center(child: Lottie.asset("assets/video/136926-loading-123.json"),):Container()
+          isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container(),
         ],
       ),
     );

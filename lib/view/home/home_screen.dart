@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_call_app02/model/ads_screen.dart';
 import 'package:video_call_app02/view/home/swipe%20card/buttons.dart';
 import 'package:video_call_app02/view/home/swipe%20card/candidate_model.dart';
 import 'package:video_call_app02/view/home/swipe%20card/card.dart';
@@ -24,7 +27,7 @@ class _Home_screenPageState extends State<Home_screen> {
   void initState() {
 
     super.initState();
-     _loadCards();
+    _loadCards();
   }
 
   void _loadCards() {
@@ -41,40 +44,67 @@ class _Home_screenPageState extends State<Home_screen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
 
-      child: Column(
+      child: Stack(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            height:75.h,
-            width: 93.w,
-            child: AppinioSwiper(
-              unlimitedUnswipe: true,
-              controller: controller,
-              unswipe: _unswipe,
-              cards: cards,
-              onSwipe: _swipe,
-
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
             children: [
               const SizedBox(
-                width: 80,
+                height: 20,
               ),
-              swipeLeftButton(controller),
-              const SizedBox(
-                width: 20,
+              Container(
+                height:75.h,
+                width: 93.w,
+                child: AppinioSwiper(
+                  unlimitedUnswipe: true,
+                  controller: controller,
+                  unswipe: _unswipe,
+                  cards: cards,
+                  onSwipe: _swipe,
+
+                ),
               ),
-              swipeRightButton(controller),
-              const SizedBox(
-                width: 20,
-              ),
-              unswipeButton(controller),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 80,
+                  ),
+                  swipeLeftButton(controller,() {
+                    setState(() {
+                      isloading = true;
+                    });
+                    interVideoAds();
+                    Timer(Duration(seconds: 7), () {
+                      setState(() {
+                        isloading = false;
+                      });
+                      controller.swipeLeft();
+                    });
+                  }),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  swipeRightButton(controller,() {
+                    setState(() {
+                      isloading = true;
+                    });
+                    interVideoAds();
+                    Timer(Duration(seconds: 7), () {
+                      setState(() {
+                        isloading = false;
+                      });
+                      controller.swipeRight();
+                    });
+                  }),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  unswipeButton(controller),
+                ],
+              )
             ],
-          )
+          ),
+          isloading?Center(child: Lottie.asset("assets/video/lottie/Comp 1 (3).json"),):Container(),
         ],
       ),
     );

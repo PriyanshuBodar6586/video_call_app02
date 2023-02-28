@@ -8,7 +8,7 @@ import 'package:video_call_app02/model/ads_screen.dart';
 import 'package:video_call_app02/utilies/adsconstant.dart';
 
 import '../../../provider/home_provider.dart';
-import '../../model/model.dart';
+
 
 class love extends StatefulWidget {
   const love({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _loveState extends State<love> {
 
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+
     home_providerF = Provider.of<Home_Provider>(context, listen: false);
     home_providerT = Provider.of<Home_Provider>(context, listen: true);
     return Scaffold(
@@ -101,7 +101,7 @@ class _loveState extends State<love> {
                             setState(() {
                               isloading = false ;
                             });
-                            Navigator.pushNamed(context, 'interest',arguments: m1);
+                            Navigator.pushNamed(context, 'interest');
                           });
 
                         },
@@ -125,7 +125,7 @@ class _loveState extends State<love> {
                             setState(() {
                               isloading = false ;
                             });
-                            Navigator.pushNamed(context, 'interest',arguments: m1);
+                            Navigator.pushNamed(context, 'interest');
                           });
 
                         },
@@ -159,7 +159,7 @@ class _loveState extends State<love> {
                             setState(() {
                               isloading = false ;
                             });
-                            Navigator.pushNamed(context, 'interest',arguments: m1);
+                            Navigator.pushNamed(context, 'interest');
                           });
                         },
                         child: Container(
@@ -194,7 +194,7 @@ class _loveState extends State<love> {
                             setState(() {
                               isloading = false ;
                             });
-                            Navigator.pushNamed(context, 'interest',arguments: m1);
+                            Navigator.pushNamed(context, 'interest');
                           });
                         },
                         child: Container(

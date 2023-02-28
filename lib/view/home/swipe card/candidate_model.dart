@@ -12,7 +12,6 @@ class Home_screenCandidateModel {
    this.image
   });
 }
-
 List<Home_screenCandidateModel> candidates = [
 
     Home_screenCandidateModel(city:"City :- Town",job: "Job :- Privet",image: "assets/images/ig/1.png",name:"Name :-  Regina ",),

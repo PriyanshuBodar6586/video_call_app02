@@ -9,6 +9,7 @@ import 'package:video_call_app02/view/home/fcall.dart';
 import 'package:video_call_app02/view/home/fcall_play.dart';
 import 'package:video_call_app02/view/home/like_post.dart';
 import 'package:video_call_app02/view/home/lottie.dart';
+import 'package:video_call_app02/view/home/rvideo.dart';
 import 'package:video_call_app02/view/intro_screen.dart';
 import 'package:video_call_app02/view/intro_screen2.dart';
 import 'package:video_call_app02/view/intro_screnn3.dart';
@@ -21,6 +22,7 @@ import 'package:video_call_app02/view/question/nick_name.dart';
 import 'package:video_call_app02/view/splash_screen.dart';
 
 import 'provider/home_provider.dart';
+import 'view/home/privacy_policy.dart';
 import 'view/question/love_screen.dart';
 
 void main() async {
@@ -60,6 +62,10 @@ void main() async {
               'Fcall_play': (contest) => Fcall_play(),
               'near_post': (contest) => near_post(),
               'Done': (contest) => Done(),
+              'Privacy': (contest) => Privacy_Policy(),
+
+
+
 
             },
           );

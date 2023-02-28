@@ -33,7 +33,7 @@ class _GenderState extends State<Gender> {
 
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+
     home_providerF = Provider.of<Home_Provider>(context, listen: false);
     home_providerT = Provider.of<Home_Provider>(context, listen: true);
     return Scaffold(
@@ -100,7 +100,7 @@ class _GenderState extends State<Gender> {
                              setState(() {
                                isloading = false ;
                              });
-                             Navigator.pushNamed(context, 'Age',arguments: m1);
+                             Navigator.pushNamed(context, 'Age');
                            });
 
                          },
@@ -124,7 +124,7 @@ class _GenderState extends State<Gender> {
                              setState(() {
                                isloading = false ;
                              });
-                             Navigator.pushNamed(context, 'Age',arguments: m1);
+                             Navigator.pushNamed(context, 'Age');
                            });
                          },
                          child: Container(
@@ -157,7 +157,7 @@ class _GenderState extends State<Gender> {
                              setState(() {
                                isloading = false ;
                              });
-                             Navigator.pushNamed(context, 'Age',arguments: m1);
+                             Navigator.pushNamed(context, 'Age');
                            });
                          },
                          child: Container(
@@ -192,7 +192,7 @@ class _GenderState extends State<Gender> {
                              setState(() {
                                isloading = false ;
                              });
-                             Navigator.pushNamed(context, 'Age',arguments: m1);
+                             Navigator.pushNamed(context, 'Age');
                            });
                          },
                          child: Container(

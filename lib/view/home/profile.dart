@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_call_app02/model/model.dart';
+import 'package:video_call_app02/provider/home_provider.dart';
 import 'package:video_call_app02/utilies/adsconstant.dart';
 import 'package:video_call_app02/utilies/constant.dart';
 
@@ -22,9 +24,15 @@ class _ProfileState extends State<Profile> {
     super.initState();
     fornative();
   }
+
+  Home_Provider? home_providerf;
+  Home_Provider? home_providert;
+
   @override
   Widget build(BuildContext context) {
-    txt m1 = ModalRoute.of(context)!.settings.arguments as txt;
+    home_providerf = Provider.of<Home_Provider>(context, listen: false);
+    home_providert = Provider.of<Home_Provider>(context, listen: true);
+
     return Scaffold(
       backgroundColor: AppColor.fullwhite,
       appBar: AppBar(
@@ -76,7 +84,7 @@ class _ProfileState extends State<Profile> {
               color: AppColor.fullblack,
               size: 30.sp,
             ),
-            title: Text("${m1.name}"),
+            title: Text(home_providert!.mStrName),
             trailing: Icon(
               Icons.chevron_right_outlined,
               color: AppColor.fullblack,
@@ -152,6 +160,7 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+
   void fornative() {
     try {
       nativead = NativeAd(
